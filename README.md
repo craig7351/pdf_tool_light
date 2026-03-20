@@ -8,6 +8,9 @@
 - **螢光筆標註**：在搜尋到的位置自動加上黃色螢光筆標記。
 - **無損儲存**：另存新檔，不影響原檔案，並優化輸出的 PDF 大小。
 
+### 介面展示
+![PDF 批次標註大師介面](assets/ui_screenshot.png)
+
 ## 核心技術
 - **[PyMuPDF (fitz)](https://pymupdf.readthedocs.io/)**: 高效能的 PDF 解析與標註庫。
 - **Tkinter**: 用於檔案選取與輸入框的 GUI 介面。
@@ -34,3 +37,6 @@
 ## 注意事項
 - 僅支援文字類型的 PDF（若是掃描圖片製作的 PDF，需先經過 OCR 處理）。
 - 如果關鍵字分散在多行，標註會自動適應每一行的位置。
+
+### 標註效果展示
+![PDF 標註結果展示](assets/result_screenshot.png)
