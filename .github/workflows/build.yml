@@ -1,0 +1,38 @@
+name: Build Windows EXE
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: 檢出代碼
+        uses: actions/checkout@v4
+
+      - name: 設定 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: 安裝依賴
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 使用 PyInstaller 打包
+        run: |
+          # --noconsole: 執行時不顯示黑視窗
+          # --onefile: 打包成單一 exe
+          # --collect-all flet: 確保 Flet 資源被完整包含
+          pyinstaller --noconsole --onefile --name "PDFBatchMarker" --collect-all flet flet_pdf_app.py
+
+      - name: 上傳 Release 附件
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: dist/PDFBatchMarker.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
