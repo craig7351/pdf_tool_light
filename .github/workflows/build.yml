@@ -7,6 +7,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: write  # 必須加入此權限才能上傳附件到 Release
 
     steps:
       - name: 檢出代碼
