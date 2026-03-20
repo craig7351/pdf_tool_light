@@ -29,7 +29,8 @@ jobs:
           # --noconsole: 執行時不顯示黑視窗
           # --onefile: 打包成單一 exe
           # --collect-all flet: 確保 Flet 資源被完整包含
-          pyinstaller --noconsole --onefile --name "PDFBatchMarker" --collect-all flet flet_pdf_app.py
+          # --hidden-import flet_desktop: 強制包含桌面模組
+          pyinstaller --noconsole --onefile --name "PDFBatchMarker" --collect-all flet --hidden-import flet_desktop flet_pdf_app.py
 
       - name: 上傳 Release 附件
         uses: softprops/action-gh-release@v2
